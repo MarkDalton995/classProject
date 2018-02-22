@@ -35,6 +35,7 @@ public class BankApplication extends JFrame {
 	ArrayList<BankAccount> accountList = new ArrayList<BankAccount>();
 	static HashMap<Integer, BankAccount> table = new HashMap<Integer, BankAccount>();
 	private final static int TABLE_SIZE = 29;
+	private final static int RESET_CURRENT = 0;
 	static private final String newline = "\n";
 	
 	JMenuBar menuBar;
@@ -222,18 +223,23 @@ public class BankApplication extends JFrame {
 		ActionListener first = new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
+				if (!table.isEmpty()) 
+				{
 				saveOpenValues();
 				
-				currentItem=0;
+				currentItem=RESET_CURRENT;
 				while(!table.containsKey(currentItem)){
 					currentItem++;
 				}
 				displayDetails(currentItem);
+				}
 			}
 		};
 		
 		ActionListener next = new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				if (!table.isEmpty()) 
+				{
 				saveOpenValues();
 				// No next if at end of list.
 				if (currentItem != (table.size()-1)) {
@@ -242,7 +248,8 @@ public class BankApplication extends JFrame {
 					while(!table.containsKey(currentItem) ){
 						currentItem++;
 					}
-					displayDetails(currentItem);			
+					displayDetails(currentItem);
+				}
 				}				
 			}
 		};
@@ -250,6 +257,8 @@ public class BankApplication extends JFrame {
 		ActionListener next1 = new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 				
+				if (!table.isEmpty()) 
+				{
 				ArrayList<Integer> keyList = new ArrayList<Integer>();
 				int i=0;
 		
@@ -269,7 +278,8 @@ public class BankApplication extends JFrame {
 							currentItem++;
 						}
 					}
-					displayDetails(currentItem);			
+					displayDetails(currentItem);
+				}
 			}
 		};
 		
@@ -278,6 +288,8 @@ public class BankApplication extends JFrame {
 		ActionListener prev = new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
+				if (!table.isEmpty()) 
+				{
 				ArrayList<Integer> keyList = new ArrayList<Integer>();
 				int i=0;
 		
@@ -297,15 +309,19 @@ public class BankApplication extends JFrame {
 						currentItem--;
 					}
 				}
-				displayDetails(currentItem);				
+				displayDetails(currentItem);
+				}
 			}
 		};
 	
 		ActionListener last = new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+				if (!table.isEmpty()) 
+				{
 				saveOpenValues();
 				
-				currentItem =29;
+				currentItem =TABLE_SIZE;
 								
 				while(!table.containsKey(currentItem)){
 					currentItem--;
@@ -313,6 +329,7 @@ public class BankApplication extends JFrame {
 				}
 				
 				displayDetails(currentItem);
+				}
 			}
 		};
 		
@@ -335,7 +352,7 @@ public class BankApplication extends JFrame {
 							JOptionPane.showMessageDialog(null, "Account Deleted");
 							
 
-							currentItem=0;
+							currentItem=RESET_CURRENT;
 							while(!table.containsKey(currentItem)){
 								currentItem++;
 							}
@@ -404,7 +421,7 @@ public class BankApplication extends JFrame {
 		open.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 				readFile();
-				currentItem=0;
+				currentItem=RESET_CURRENT;
 				while(!table.containsKey(currentItem)){
 					currentItem++;
 				}
