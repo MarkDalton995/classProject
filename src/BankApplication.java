@@ -347,17 +347,20 @@ public class BankApplication extends JFrame {
 		
 		deleteItem.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
-						
+							
+				if (currentItem > 0) {
 							table.remove(currentItem);
 							JOptionPane.showMessageDialog(null, "Account Deleted");
 							
-
 							currentItem=RESET_CURRENT;
 							while(!table.containsKey(currentItem)){
 								currentItem++;
 							}
 							displayDetails(currentItem);
 							
+				} else {
+					JOptionPane.showMessageDialog(null, "Nothing to delete");
+				}
 			}
 		});
 		
@@ -370,10 +373,15 @@ public class BankApplication extends JFrame {
 		
 		modifyItem.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
+				if (currentItem > 0) {
 				surnameTextField.setEditable(true);
 				firstNameTextField.setEditable(true);
 				
 				openValues = true;
+				}
+				else {
+				JOptionPane.showMessageDialog(null, "Nothing to be modified");
+				}
 			}
 		});
 		
