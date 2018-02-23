@@ -193,6 +193,8 @@ public class CreateBankDialog extends JFrame {
 								hash = hash+1;
 							}
 							table.put(hash, account);
+							JOptionPane.showMessageDialog(null, "Account created.");
+							dispose();
 						}
 						else{
 							JOptionPane.showMessageDialog(null, "Account Number must be unique");
@@ -203,7 +205,6 @@ public class CreateBankDialog extends JFrame {
 					}
 				}
 				else JOptionPane.showMessageDialog(null, "Please make sure all fields have values, and Account Number is a unique 8 digit number");
-				dispose();
 			}
 		});
 		
